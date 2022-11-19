@@ -1,6 +1,5 @@
 #include <iostream>
 #include <queue>
-#define MAX 
 
 using namespace std;
 
@@ -122,5 +121,6 @@ int bfs(int	now_node, int target_node)
 			}
 		}
 	}
+
 	return(-1);
 }
