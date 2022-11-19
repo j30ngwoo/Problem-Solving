@@ -44,7 +44,6 @@ void input_data(void)
 void print_graph(vector<vector<int>> &graph)
 {
 	int i = 0;
-
 	while (++i < graph.size())
 	{
 		int j = -1;
