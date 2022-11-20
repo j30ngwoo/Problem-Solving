@@ -3,14 +3,15 @@
 
 using namespace std;
 
-int		m, n;
-int		board[50][50] = {0, };
-
 void	input_data(void);
 int		min_square(void);
 int		paint_square(int x, int y);
 int		count_square(int x, int y, int w_or_b);
 int		convert(int a);
+
+int		m, n;
+int		board[50][50] = {0, };
+
 
 int	main(void)
 {

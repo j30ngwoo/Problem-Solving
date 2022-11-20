@@ -4,12 +4,12 @@
 
 using namespace std;
 
-vector<pair<int, int>>	rooms;
-int	n;
-
 void	input_data(void);
 int		count_meeting(void);
 bool	compare(const pair<int, int> a, const pair<int, int> b);
+
+vector<pair<int, int>>	rooms;
+int	n;
 
 int	main(void)
 {

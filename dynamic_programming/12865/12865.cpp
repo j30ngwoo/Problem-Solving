@@ -2,14 +2,14 @@
 #include <algorithm>
 using namespace std;
 
+void	input_data(void);
+int		find_max_value(void);
+void	print_arr(void);
+
 int dp[100001] = {0, };
 int weight[100];
 int value[100];
 int	n, max_weight;
-
-void	input_data(void);
-int		find_max_value(void);
-void	print_arr(void);
 
 int	main(void)
 {

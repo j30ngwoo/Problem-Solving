@@ -4,17 +4,17 @@
 
 using namespace std;
 
-int		cave[126][126] = {0, };
-int		graph[126][126];
-int		n;
-queue<pair<int, int>> q;
-vector<int>	result;
-
 void	input_data(void);
 void	zelda(void);
 void	check_four_directions(pair<int, int> now_node);
 void	prt_arr(void);
 void	prt_result(int c);
+
+int		cave[126][126] = {0, };
+int		graph[126][126];
+int		n;
+queue<pair<int, int>> q;
+vector<int>	result;
 
 int	main(void)
 {
