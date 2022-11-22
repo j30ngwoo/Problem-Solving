@@ -25,9 +25,7 @@ void input_data(void)
 
 	int i = -1;
 	while(++i < n)
-	{
 		cin >> input[i];
-	}
 
 	return ;
 }
