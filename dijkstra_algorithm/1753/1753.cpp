@@ -9,9 +9,19 @@ void shortest_path(void);
 void print_result(void);
 
 vector<vector<pair<int, int>>> graph;
-queue<int> bfs_queue;
+
 int	path[20001];
 int total_voltex, total_edge, start_voltex;
+
+struct cmp
+{
+  	bool operator() (int a, int b) 
+	{
+		return path[a] > path[b];
+	}
+};
+
+priority_queue<int, vector<int>, cmp> p_queue;
 
 int main(void)
 {
@@ -44,23 +54,25 @@ void input_data(void)
 
 void shortest_path(void)
 {
-	bfs_queue.push(start_voltex);
-
-	while (!bfs_queue.empty())
+	p_queue.push(start_voltex);
+	path[start_voltex] = 0;
+	
+	while (!p_queue.empty())
 	{
-		int now_voltex = bfs_queue.front();
-		bfs_queue.pop();
+		int now_voltex = p_queue.top();
+		p_queue.pop();
 
 		int i = -1;
-		while (++i < graph[now_voltex].size())
+		int now_edges = graph[now_voltex].size();
+		while (++i < now_edges)
 		{
 			int target_voltex = graph[now_voltex][i].first;
 			int target_weight = graph[now_voltex][i].second;
 
 			if (path[target_voltex] == -1 || path[target_voltex] > path[now_voltex] + target_weight)
 			{
-				bfs_queue.push(target_voltex);
 				path[target_voltex] = path[now_voltex] + target_weight;
+				p_queue.push(target_voltex);
 			}
 		}
 	}
@@ -75,9 +87,10 @@ void print_result(void)
 	while (++i <= total_voltex)
 	{
 		if (path[i] == -1)
-			cout << "INF" << endl;
+			cout << "INF";
 		else
-			cout << path[i] << endl;
+			cout << path[i];
+		cout << '\n';
 	}
 
 	return ;
