@@ -17,7 +17,7 @@ int main(void)
 {
 	input_data();
 	cout << recursion(0, 0) << endl;
-	print_graph();
+	//print_graph();
 
 	return (0);
 }
