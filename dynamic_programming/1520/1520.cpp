@@ -1,11 +1,9 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
 void	input_data(void);
 int		recursion(int x, int y);
-void	print_graph(void);
 
 int m, n;
 int map[500][500];
@@ -16,8 +14,7 @@ int move_y[4] = {0, 0, 1, -1};
 int main(void)
 {
 	input_data();
-	cout << recursion(0, 0) << endl;
-	//print_graph();
+	cout << recursion(0, 0);
 
 	return (0);
 }
@@ -62,6 +59,7 @@ int	recursion(int x, int y)
 	return (path_count[x][y]);
 }
 
+/*
 void print_graph(void)
 {
 	int i = -1;
@@ -77,3 +75,4 @@ void print_graph(void)
 
 	return ;
 }
+*/
