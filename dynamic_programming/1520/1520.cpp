@@ -51,28 +51,10 @@ int	recursion(int x, int y)
 		{
 			int next_x = x + move_x[i];
 			int next_y = y + move_y[i];
-			if (x >= 0 && x < m && y >= 0 && y < n && map[next_x][next_y] < map[x][y])
+			if (next_x >= 0 && next_x < m && next_y >= 0 && next_y < n && map[next_x][next_y] < map[x][y])
 				path_count[x][y] += recursion(next_x, next_y);
 		}
 	}
 
 	return (path_count[x][y]);
 }
-
-/*
-void print_graph(void)
-{
-	int i = -1;
-	while (++i < m)
-	{
-		int j = -1;
-		while (++j < n)
-		{
-			cout << path_count[i][j] << " ";
-		}
-		cout << endl;
-	}
-
-	return ;
-}
-*/
