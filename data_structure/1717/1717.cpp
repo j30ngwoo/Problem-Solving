@@ -58,20 +58,23 @@ void union_find(void)
 	return ;
 }
 
-int find_parent(int child)
+int find_parent(int x)
 {
-	if (parent[child] != child)
-		find_parent(parent[child]);
-	return (child);
+	if (parent[x] == x) 
+		return x;
+	parent[x] = find_parent(parent[x]);
+	return (parent[x]);
 }
 
 void merge(int a, int b)
 {
-	int	a_parent = find_parent(a);
-	int	b_parent = find_parent(b);
+	a = find_parent(a);
+	b = find_parent(b);
 
-	if (a_parent != b_parent)
-		parent[a] = b_parent;
+	if (a > b)
+		parent[a] = b;
+    else
+		parent[b] = a;
 
 	return ;
 }
