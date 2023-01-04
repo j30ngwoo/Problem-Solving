@@ -11,11 +11,12 @@ void	union_find(void);
 int		find_parent(int child);
 void	merge(int a, int b);
 void	is_in_union(int a, int b);
+void	prt_arr(void);
 
 
 int main(void)
 {
-	set_io();
+	//set_io();
 	input_data();
 	union_find();
 
@@ -53,6 +54,7 @@ void union_find(void)
 			merge(a, b);
 		else if (calculation == 1)
 			is_in_union(a, b);
+		prt_arr();
 	}
 
 	return ;
@@ -73,7 +75,7 @@ void merge(int a, int b)
 
 	if (a > b)
 		parent[a] = b;
-    else
+    else if (a < b)
 		parent[b] = a;
 
 	return ;
@@ -86,5 +88,21 @@ void is_in_union(int a, int b)
 	else
 		cout << "NO" << '\n';
 	
+	return ;
+}
+
+void prt_arr(void)
+{
+	int i = -1;
+
+	cout << '\n';
+	while (++i <= n)
+		cout << i << ' ';
+	cout << '\n';
+	i = -1;
+	while (++i <= n)
+		cout << parent[i] << ' ';
+	cout << '\n';
+
 	return ;
 }
