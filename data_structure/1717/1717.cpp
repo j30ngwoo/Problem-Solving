@@ -16,7 +16,7 @@ void	prt_arr(void);
 
 int main(void)
 {
-	//set_io();
+	set_io();
 	input_data();
 	union_find();
 
@@ -54,7 +54,7 @@ void union_find(void)
 			merge(a, b);
 		else if (calculation == 1)
 			is_in_union(a, b);
-		prt_arr();
+		//prt_arr();
 	}
 
 	return ;
