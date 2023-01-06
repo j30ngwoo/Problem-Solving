@@ -16,8 +16,7 @@ void prt_result(int is_reversed);
 
 int main(void)
 {
-	//set_io();
-	
+	set_io();
 	int testcase;
 	cin >> testcase;
 
@@ -71,12 +70,7 @@ void ac(void)
 	while (++i < function_length)
 	{
 		if (functions[i] == 'R')
-		{
-			if (is_reversed == 0)
-				is_reversed++;
-			else
-				is_reversed--;
-		}
+			is_reversed = is_reversed ? 0 : 1;
 		else
 		{
 			if (int_deque.empty())
@@ -84,10 +78,7 @@ void ac(void)
 				cout << "error" << '\n';
 				return ;
 			}
-			if (is_reversed == 0)
-				int_deque.pop_front();
-			else
-				int_deque.pop_back();
+			is_reversed ? int_deque.pop_back() : int_deque.pop_front();
 			arr_length--;
 		}
 	}
