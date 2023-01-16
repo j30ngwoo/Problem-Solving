@@ -29,10 +29,10 @@ void input_data(void)
 	int	i = -1;
 	while (++i < m)
 	{
-		int		j = -1;
-		char	c;
+		int	j = -1;
 		while (++j < n)
 		{
+			char c;
 			cin >> c;
 			if (c == 'B')
 				board[i][j] = 1;
