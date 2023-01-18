@@ -6,10 +6,10 @@ void input_data(void);
 void find_max(void);
 void prt_square(void);
 
-int n, m, c, total_max;
+int n, m, c;
 int student_a[1001], student_b[1001];
 int satisfaction[17][17];
-int dp[1001][1001];
+long long dp[1001][1001];
 
 int main(void)
 {
@@ -56,28 +56,13 @@ void find_max(void)
 		j = 0;
 		while (++j <= m)
 		{
-			int now_value = satisfaction[student_a[i]][student_b[j]] + dp[i - 1][j - 1];
-			dp[i][j] = max(now_value, dp[i][j - 1]);
-			total_max = max(total_max, dp[i][j]);
-			//prt_square();
+			long long now_value = satisfaction[student_a[i]][student_b[j]] + dp[i - 1][j - 1];
+			dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+			dp[i][j] = max(dp[i][j], now_value);
 		}
 	}
 
-	cout << total_max << '\n';
+	cout << dp[n][m] << '\n';
 
-	return ;
-}
-
-void prt_square(void)
-{
-	cout << '\n';
-	int i = 0;
-	while (++i <= n)
-	{
-		int j = 0;
-		while (++j <= m)
-			cout << dp[i][j] << ' ';
-		cout << '\n';
-	}
 	return ;
 }
