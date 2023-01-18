@@ -4,7 +4,6 @@ using namespace std;
 
 void input_data(void);
 void find_max(void);
-void prt_square(void);
 
 int n, m, c;
 int student_a[1001], student_b[1001];
