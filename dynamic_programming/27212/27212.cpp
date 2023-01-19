@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -56,8 +57,7 @@ void find_max(void)
 		while (++j <= m)
 		{
 			long long now_value = satisfaction[student_a[i]][student_b[j]] + dp[i - 1][j - 1];
-			dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
-			dp[i][j] = max(dp[i][j], now_value);
+			dp[i][j] = max({dp[i - 1][j], dp[i][j - 1], now_value});
 		}
 	}
 
