@@ -38,7 +38,7 @@ void input_data(void)
 	i = 0;
 	while (++i <= n)
 		cin >> student_a[i];
-	
+
 	i = 0;
 	while (++i <= m)
 		cin >> student_b[i];
@@ -49,7 +49,7 @@ void input_data(void)
 void find_max(void)
 {
 	int i, j;
-	
+
 	i = 0;
 	while (++i <= n)
 	{

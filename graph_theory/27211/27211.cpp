@@ -50,7 +50,10 @@ void find_section(void)
 		int j = -1;
 		while (++j < m)
 			if (planet[i][j] == 0)
+			{
+				bfs_count++;
 				bfs(i, j);
+			}
 	}
 
 	cout << bfs_count << '\n';
@@ -60,10 +63,8 @@ void find_section(void)
 
 void bfs(int x, int y)
 {
-	bfs_count++;
-
 	bfs_q.push({x, y});
-	planet[x][y] = bfs_count;
+	planet[x][y] = 1;
 	
 	while (!bfs_q.empty())
 	{
@@ -78,15 +79,15 @@ void bfs(int x, int y)
 			int next_y = now_y + move_y[i];
 			if (next_x < 0)
 				next_x = n - 1;
-			if (next_x >= n)
+			else if (next_x >= n)
 				next_x = 0;
 			if (next_y < 0)
 				next_y = m - 1;
-			if (next_y >= m)
+			else if (next_y >= m)
 				next_y = 0;
 			if (planet[next_x][next_y] == 0)
 			{
-				planet[next_x][next_y] = bfs_count;
+				planet[next_x][next_y] = 1;
 				bfs_q.push({next_x, next_y});
 			}
 		}
