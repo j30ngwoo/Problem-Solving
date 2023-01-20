@@ -45,7 +45,7 @@ int	find_max_value(void)
 		while (--check_weight >= 1)
 			if (check_weight >= weight[i])
 				dp[check_weight] = max(dp[check_weight], dp[check_weight - weight[i]] + value[i]);
-		print_arr();
+		//print_arr();
 	}
 
 	return (dp[max_weight]);
