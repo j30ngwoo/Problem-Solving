@@ -40,7 +40,6 @@ void find_max(void)
 	while (first <= last)
 	{
 		int mid = (first + last) / 2;
-
 		int count = 1, last_coordinate = house[0];
 		int i = 0;
 
