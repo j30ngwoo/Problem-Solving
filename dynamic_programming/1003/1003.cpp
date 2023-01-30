@@ -2,7 +2,8 @@
 
 using namespace std;
 
-int dp[41][2];
+void set(void);
+int dp[2][41];
 
 int main(void)
 {	
@@ -16,7 +17,7 @@ int main(void)
 	{
 		int input;
 		cin >> input;
-		cout << arr[0][input] << ' ' << arr[1][input] << '\n';
+		cout << dp[0][input] << ' ' << dp[1][input] << '\n';
 	}
 
 	return (0);
@@ -24,14 +25,14 @@ int main(void)
 
 void set(void)
 {
-	arr[0][0] = 1;
-	arr[1][1] = 1;
+	dp[0][0] = 1;
+	dp[1][1] = 1;
 
 	int i = 1;
 	while (++i < 41)
 	{
-		arr[0][i] = arr[0][i - 1] + arr[0][i - 2];
-		arr[1][i] = arr[1][i - 1] + arr[1][i - 2];
+		dp[0][i] = dp[0][i - 1] + dp[0][i - 2];
+		dp[1][i] = dp[1][i - 1] + dp[1][i - 2];
 	}
 
 	return ;
