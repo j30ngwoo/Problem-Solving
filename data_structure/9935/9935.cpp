@@ -1,9 +1,7 @@
 #include <iostream>
-
 using namespace std;
 
 void explosion(void);
-
 string str, frula, result;
 
 int main(void)
@@ -14,7 +12,7 @@ int main(void)
 	str.reserve(1000001);
 	frula.reserve(40);
 	result.reserve(1000001);
-	
+
 	explosion();
 
 	return (0);
