@@ -1,16 +1,14 @@
 #include <iostream>
-#include <vector>
 #include <unistd.h>
 using namespace std;
-
-vector<int> parent;
-int n, m;
+int parent[100001], n, m;
 
 int find(int x)
 {
 	if (parent[x] == x)
 		return (x);
-	return (parent[x] = find(x));
+	parent[x] = find(parent[x]);
+	return (parent[x]);
 }
 
 void merge(int a, int b)
@@ -20,40 +18,43 @@ void merge(int a, int b)
 	parent[a] = b;
 }
 
-void init(void)
+int	prt_arr(void)
 {
-	int i;
-
-	i = 0;
+	int i = 0;
 	while (++i <= n)
-		parent[i] = i;
+		cout << parent[i] << " ";
 }
 
 int main(void)
 {
-	//ios_base::sync_with_stdio(0);
-	//cin.tie(0);
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
 
 	cin >> n >> m;
-	parent.resize(n + 1);
-	init();
-	while (m-- > 0)
+	int x = -1;
+	while (++x <= n)
+	{
+		parent[x] = x;
+	}
+	x = 0;
+	while (x++ < m)
 	{
 		int i, j;
 		cin >> i >> j;
 		merge(i, j);
-		write(1, "@\n", 1);
 	}
 	int count = 0, now_class, last_class = 0;
-	while (n-- > 0)
+	x = 0;
+	while (x++ < n)
 	{
-		cout << "n=" << n << '\n';
 		cin >> now_class;
+		cout << "class: " << now_class << ' ' << last_class << '\n';
+		cout << "find : " << find(now_class) << ' ' << find(last_class) << '\n';
 		if (last_class != 0 && find(now_class) == find(last_class))
 			count++;
 		last_class = now_class;
 	}
-
+	
 	cout << count;
 	return (0);
 }
