@@ -7,8 +7,7 @@ int find(int x)
 {
 	if (parent[x] == x)
 		return (x);
-	parent[x] = find(parent[x]);
-	return (parent[x]);
+	return (parent[x] = find(parent[x]));
 }
 
 void merge(int a, int b)
@@ -23,6 +22,7 @@ int	prt_arr(void)
 	int i = 0;
 	while (++i <= n)
 		cout << parent[i] << " ";
+	cout << "\n";
 }
 
 int main(void)
@@ -48,9 +48,9 @@ int main(void)
 	while (x++ < n)
 	{
 		cin >> now_class;
-		cout << "class: " << now_class << ' ' << last_class << '\n';
-		cout << "find : " << find(now_class) << ' ' << find(last_class) << '\n';
-		if (last_class != 0 && find(now_class) == find(last_class))
+		//cout << "class: " << now_class << ' ' << last_class << '\n';
+		//cout << "find : " << find(now_class) << ' ' << find(last_class) << "\n";
+		if (last_class != 0 && find(now_class) != find(last_class))
 			count++;
 		last_class = now_class;
 	}
