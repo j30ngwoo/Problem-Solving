@@ -7,7 +7,7 @@ class Node {
 		int value;
 		Node* left;
 		Node* right;
-	
+
 	public:
 		Node(int value) {
 			this->value = value;
@@ -27,7 +27,7 @@ class Node {
 class BinaryTree {
 	private:
 		Node* root = nullptr;
-	
+
 	public:
 		Node* getRoot() {return (root);}
 
