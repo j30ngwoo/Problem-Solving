@@ -35,9 +35,9 @@ bool compare_distance(Cow a, Cow b) {
 		return false;
 	if (a.direction == 'N' && b.direction == 'E' && a.x >= b.x && a.y <= b.y && b.y - a.y > a.x - b.x)
 		return false;
-	if (a.direction == 'E' && b.direction == 'E' && a.y == b.y && a.x > b.x)
+	if (a.direction == 'E' && b.direction == 'E' && a.y == b.y && a.x < b.x)
 		return false;
-	if (a.direction == 'N' && b.direction == 'N' && a.x == b.x && a.y > b.y)
+	if (a.direction == 'N' && b.direction == 'N' && a.x == b.x && a.y < b.y)
 		return false;
 	return true;
 }
@@ -55,18 +55,29 @@ int main(void) {
 		cin >> cow_arr[i].direction >> cow_arr[i].x >> cow_arr[i].y;
 		cow_arr[i].index = i;
 	}
-	cout << compare_distance(cow_arr[2], cow_arr[5]) << '\n';
-	
+
 	sort(cow_arr, cow_arr + n, compare_distance);
 	
-	for (int i = 0; i < n; i++) printf("%d ", cow_arr[i].index);
-	printf("\n");
+	/*
+	cout << "after sort: ";
+	for (int i = 0; i < n; i++) cout << cow_arr[i].index << ' ';
+	cout << '\n';
+	*/
+
+	for (int i = 0; i < n; i++) {
+		cout << cow_arr[i].index << ": ";
+		for (int j = i + 1; j < n; j++) {
+			cout << compare_distance(cow_arr[i], cow_arr[j]) << ' ';
+		}
+		cout << '\n';
+	}
+	
 	/*
 	for (int current_index = 0; current_index < n; current_index++) {
 		cow_arr[current_index].min_distance = INFINITY;
 		for (int compare_index = 0; compare_index < current_index; compare_index++) {
 			int new_distance = measure_distance(cow_arr[current_index], cow_arr[compare_index]);
-			printf("%d to %d : %d\n", cow_arr[current_index].index, cow_arr[compare_index].index, new_distance);
+			//printf("%d to %d : %d\n", cow_arr[current_index].index, cow_arr[compare_index].index, new_distance);
 			if (cow_arr[current_index].min_distance > new_distance)
 				cow_arr[current_index].min_distance = new_distance;
 		}
