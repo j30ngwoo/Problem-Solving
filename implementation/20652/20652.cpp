@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 #define INFINITY 1000000001
-
+#define FOR(i, n) for(int i = 0; i < n; i++)
 
 using namespace std;
 
@@ -11,86 +11,41 @@ class Cow {
 		char direction;
 		int x;
 		int y;
-		int index;
-		int min_distance;
 };
 
-Cow cow_arr[51];
+class Intersect {
+	public:
+		Cow stop_cow;
+		Cow continue_cow;
+		int time;
+		int x;
+		int y;
+};
+
+vector<Cow> cows;
+vector<Intersect> intersects;
 int n;
-
-int measure_distance(Cow src, Cow dst) {
-	if (src.direction == 'E' && dst.direction == 'N' && src.x <= dst.x && src.y >= dst.y && src.y - dst.y < dst.x - src.x && src.y - dst.y < dst.min_distance)
-		return dst.x - src.x;
-	if (src.direction == 'N' && dst.direction == 'E' && src.x >= dst.x && src.y <= dst.y && src.x - dst.x < dst.y - src.y && src.x - dst.x < dst.min_distance)
-		return dst.y - src.y;
-	if (src.direction == 'E' && dst.direction == 'E' && src.y == dst.y && src.x < dst.x)
-		return dst.x - src.x;
-	if (src.direction == 'N' && dst.direction == 'N' && src.x == dst.x && src.y < dst.y)
-		return dst.y - src.y;
-	return INFINITY;
-}
-
-bool compare_distance(Cow a, Cow b) {
-	if (a.direction == 'E' && b.direction == 'N' && a.x <= b.x && a.y >= b.y && b.x - a.x > a.y - b.y)
-		return false;
-	if (a.direction == 'N' && b.direction == 'E' && a.x >= b.x && a.y <= b.y && b.y - a.y > a.x - b.x)
-		return false;
-	if (a.direction == 'E' && b.direction == 'E' && a.y == b.y && a.x < b.x)
-		return false;
-	if (a.direction == 'N' && b.direction == 'N' && a.x == b.x && a.y < b.y)
-		return false;
-	return true;
-}
-
-bool compare_index(Cow a, Cow b) {
-	if (a.index < b.index)
-		return true;
-	else
-		return false;
-}
 
 int main(void) {
 	cin >> n;
-	for (int i = 0; i < n; i++) {
-		cin >> cow_arr[i].direction >> cow_arr[i].x >> cow_arr[i].y;
-		cow_arr[i].index = i;
-	}
-
-	sort(cow_arr, cow_arr + n, compare_distance);
-	
-	/*
-	cout << "after sort: ";
-	for (int i = 0; i < n; i++) cout << cow_arr[i].index << ' ';
-	cout << '\n';
-	*/
-
-	for (int i = 0; i < n; i++) {
-		cout << cow_arr[i].index << ": ";
-		for (int j = i + 1; j < n; j++) {
-			cout << compare_distance(cow_arr[i], cow_arr[j]) << ' ';
-		}
-		cout << '\n';
+	FOR(i, n) {
+		char direction;
+		int x, y;
+		cin >> direction >> x >> y;
+		cows.push_back({direction, x, y});
 	}
 	
-	/*
-	for (int current_index = 0; current_index < n; current_index++) {
-		cow_arr[current_index].min_distance = INFINITY;
-		for (int compare_index = 0; compare_index < current_index; compare_index++) {
-			int new_distance = measure_distance(cow_arr[current_index], cow_arr[compare_index]);
-			//printf("%d to %d : %d\n", cow_arr[current_index].index, cow_arr[compare_index].index, new_distance);
-			if (cow_arr[current_index].min_distance > new_distance)
-				cow_arr[current_index].min_distance = new_distance;
+	FOR(a, n) {
+		FOR(b, n) {
+			if (cows[a].direction == 'E' && cows[b].direction == 'N' && cows[a].x < cows[b].x && cows[a].y > cows[b].y) {
+				if (cows[b].x - cows[a].x < cows[a].y - cows[b].y)
+					intersects.push_back({cows[b], cows[a], cows[]});
+
+				else if (cows[])
+			}
 		}
 	}
 
-	sort(cow_arr, cow_arr + n, compare_index);
 
-	for (int i = 0; i < n; i++) {
-		if (cow_arr[i].min_distance == INFINITY)
-			cout << "Infinity\n";
-		else
-			cout << cow_arr[i].min_distance << "\n";
-	}
-	*/
 	return (0);
 }
