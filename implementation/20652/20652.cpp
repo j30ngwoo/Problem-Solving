@@ -51,10 +51,10 @@ int main(void) {
 				int eastDist = northCow.x - eastCow.x;
 				int northDist = eastCow.y - northCow.y;
 				if (northDist < eastDist && stops[eastCow.id].x == 0) { // eastCow가 정지 && 이전의 northCow에서 정지한 적 없음
-					stops[eastCow.id] = ({northCow.y, eastCow.x});         // eastCow의 정지 위치 표시
+					stops[eastCow.id] = {northCow.x, eastCow.y};         // eastCow의 정지 위치 표시
 				} 
 				if (eastDist < northDist && stops[eastCow.id].x == 0) { // northCow가 정지 && 겹친 eastCow는 이전에 정지한 적 없음
-					stops[northCow.id] = ({northCow.y, eastCow.x});      // northCow의 정지 위치 표시. 정지하였으므로 다음 northCow로 넘어감.
+					stops[northCow.id] = {northCow.x, eastCow.y};      // northCow의 정지 위치 표시. 정지하였으므로 다음 northCow로 넘어감.
 					break ;
 				}
 			}
@@ -63,16 +63,16 @@ int main(void) {
 
 	for (auto eastCow: eastCows)
 		if (stops[eastCow.id].x != 0)
-			result[eastCow.id] = stops[eastCow.id].y - eastCow.y;
+			result[eastCow.id] = stops[eastCow.id].x - eastCow.x;
 	for (auto northCow: northCows)
 		if (stops[northCow.id].x != 0)
 			result[northCow.id] = stops[northCow.id].y - northCow.y;
 	
-	for (auto val: result) {
-		if (val == INF)
+	FOR(i, n) {
+		if (result[i] == INF)
 			cout << "Infinity\n";
 		else
-			cout << val << '\n';
+			cout << result[i] << '\n';
 	}
 
 	return (0);
