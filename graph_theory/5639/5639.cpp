@@ -2,55 +2,68 @@
 
 using namespace std;
 
-class Node {
-	private:
-		int value;
-		Node* left;
-		Node* right;
-
-	public:
-		Node(int value) {
-			this->value = value;
-			this->left = nullptr;
-			this->right = nullptr;
-		}
-
-		int getValue() {return this->value;}
-		Node* getLeft() {return this->left;}
-		Node* getRight() {return this->right;}
-
-		void setValue(int value) {this->value = value;}
-		void setLeft(Node* left) {this->left = left;}
-		void setRight(Node* right) {this->right = right;}
+struct Node {
+	int Value;
+	Node* Left;
+	Node* Right;
 };
 
 class BinaryTree {
 	private:
-		Node* root = nullptr;
-
+		Node* mRoot = nullptr;
 	public:
-		Node* getRoot() {return (root);}
-
-		void insertNode(Node* node, Node** parent) {
-			if (parent == nullptr) {
-				*parent = node;
-			} else if (node->getValue() < (*parent)->getValue()) {
-				insertNode(node, &((*parent)->getLeft()));
-			} else if (node->getValue() > (*parent)->getValue()) {
-				insertNode(node, &((*parent)->getRight()));
-			} else {
-				exit(1);
-			}
-		}
+		Node* getRoot(void);
+		void Append(int newValue);
+		void PostorderTraversal(Node* node);
 };
 
-int main(void) {
-	string value;
-	BinaryTree binaryTree;
+Node* BinaryTree::getRoot(void) {
+	return this->mRoot;
+}
 
-	while (getline(cin, value)) {
-		binaryTree.insertNode(new Node(stoi(value)), binaryTree.getRoot());
+void BinaryTree::Append(int newValue) {
+	if (mRoot == nullptr) {
+		this->mRoot = new Node({newValue, nullptr, nullptr});
+		return ;
 	}
+	Node *parent = mRoot;
+	while (true) {
+		if (newValue < parent->Value) {
+			if (parent->Left == nullptr) {
+				parent->Left = new Node({newValue, nullptr, nullptr});
+				break ;
+			}
+			else {
+				parent = parent->Left;
+			}
+		} else {
+			if (parent->Right == nullptr) {
+				parent->Right = new Node({newValue, nullptr, nullptr});
+				break ;
+			}
+			else {
+				parent = parent->Right;
+			}
+		}
+	}
+}
 
+void BinaryTree::PostorderTraversal(Node* node) {
+	if (node == nullptr)
+		return ;
+	PostorderTraversal(node->Left);
+	PostorderTraversal(node->Right);
+	cout << node->Value << '\n';
+}
+
+int main(void) {
+	int n;
+	BinaryTree tree;
+
+	while (cin >> n)
+		tree.Append(n);
+
+	tree.PostorderTraversal(tree.getRoot());
+	
 	return (0);
 }
