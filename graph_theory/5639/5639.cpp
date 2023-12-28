@@ -62,7 +62,6 @@ int main(void) {
 
 	while (cin >> n)
 		tree.Append(n);
-
 	tree.PostorderTraversal(tree.getRoot());
 	
 	return (0);
