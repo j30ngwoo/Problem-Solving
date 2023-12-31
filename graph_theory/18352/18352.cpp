@@ -44,7 +44,11 @@ int main(void) {
 		}
 	}
 
-	sort(result.begin(), result.end());
-	for (auto id: result)
-		cout << id << '\n';
+	if (result.size() == 0) {
+		cout << -1;
+	} else {
+		sort(result.begin(), result.end());
+		for (auto id: result)
+			cout << id << '\n';
+	}
 }
