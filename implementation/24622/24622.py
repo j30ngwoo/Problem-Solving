@@ -20,4 +20,3 @@ for _ in range(n):
 			break
 	if isYes == False:
 		print('NO')
-	
