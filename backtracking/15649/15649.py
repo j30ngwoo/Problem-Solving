@@ -1,19 +1,26 @@
-n, r = map(int, input().split())
-arr = sorted(list(map(int, input().split())))
-result_idx = [-1]
+import sys
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+is_visited = [False for _ in range(n + 1)]
+result_arr = []
 
 def print_idx():
-	for i in result_idx[1:]:
-		print(arr[i], end=' ')
+	for e in result_arr:
+		print(e, end=' ')
 	print()
 
-def recursion(layer):
-	if len(result_idx) == r + 1:
+def recursion():
+	if len(result_arr) == m:
 		print_idx()
 		return
-	for i in range(result_idx[-1] + 1, n - r + layer + 1):
-		result_idx.append(i)
-		recursion(layer + 1)
-		result_idx.pop()
+	for next in range(1, n + 1):
+		if is_visited[next]:
+			continue
+		result_arr.append(next)
+		is_visited[next] = True
+		recursion()
+		result_arr.pop()
+		is_visited[next] = False
 
-recursion(0)
+recursion()
