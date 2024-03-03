@@ -19,9 +19,10 @@ int popMinimum(node** nowNode) {
 	if (*nowNode == nullptr)
 		return (0);
 	if ((*nowNode)->left == nullptr) {
+		node* temp = *nowNode;
 		int value = (*nowNode)->value;
-		free(*nowNode);
-		*nowNode = (*nowNode)->right; 
+		*nowNode = (*nowNode)->right;
+		free(temp);
 		return (value);
 	}
 	return (popMinimum(&((*nowNode)->left)));
