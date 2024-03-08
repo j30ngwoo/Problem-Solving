@@ -10,5 +10,7 @@ int main(void) {
 	while (!(i % 15 == e && i % 28 == s && i % 19 == m))
 		i++;
 	cout << i;
+
 	return (0);
 }
+
