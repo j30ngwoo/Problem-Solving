@@ -1,26 +1,46 @@
 #include <iostream>
-#include <algorithm>
 #include <stack>
+#include <string>
+
 using namespace std;
 
-string s;
-stack<char> stk;
+int precedence(char op) {
+    if (op == '+' || op == '-') return 1;
+    if (op == '*' || op == '/') return 2;
+    if (op == '(') return 3;
+    return 0;
+}
 
-int main(void) {
-	cin >> s;	
-	for (char c : s) {
-		if (c == '+' || c == '-') {
+int main() {
+    string s;
+    stack<char> stk;
 
-		}
-		else if (c == '*' || c == '/') {
-
-		}
-		else if (c == '(') {
-
-		}
-		else {
-			cout << c;
-		}
-	}
-	return (0);
+    cin >> s;
+    
+    for (char c : s) {
+        if (isalpha(c)) {
+            cout << c;
+        } else if (c == '(') {
+            stk.push(c);
+        } else if (c == ')') {
+            while (stk.top() != '(') {
+                cout << stk.top();
+                stk.pop();
+            }
+			stk.pop();
+        } else {
+            while (!(stk.empty() || stk.top() == '(' || precedence(c) > precedence(stk.top()))) {
+                cout << stk.top();
+                stk.pop();
+            }
+			stk.push(c);
+        }
+    }
+    
+    while (!stk.empty()) {
+        cout << stk.top();
+        stk.pop();
+    }
+    
+    return 0;
 }
