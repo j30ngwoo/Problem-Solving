@@ -1,15 +1,21 @@
 n = int(input())
 arr = list(map(int, input().split()))
-accum = []
-is_used = set()
-for e in arr:
-	if e in is_used:
-		accum += accum[-1]
-	else:
-		is_used.add(e)
-		accum += accum[-1] + 1
+used_fruit = set()
 
 left = 0
 right = 0
+result = 0
+last_index = 0
 while right < n:
-	if accum[left]
+	if len(used_fruit) <= 2:
+		right += 1
+		if arr[right] not in used_fruit:
+			used_fruit.add(arr[right])
+			last_index = right
+	else:
+		fruit_to_remove = arr[left]
+		while arr[left] != fruit_to_remove:
+			left += 1
+		
+	result = max(result, right - left)
+print(result)
