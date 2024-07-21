@@ -1,21 +1,21 @@
 n = int(input())
 arr = list(map(int, input().split()))
-used_fruit = set()
+used_fruit = []
 
 left = 0
 right = 0
 result = 0
 last_index = 0
 while right < n:
-	if len(used_fruit) <= 2:
-		right += 1
-		if arr[right] not in used_fruit:
-			used_fruit.add(arr[right])
-			last_index = right
-	else:
-		fruit_to_remove = arr[left]
-		while arr[left] != fruit_to_remove:
-			left += 1
-		
+	if len(used_fruit) >= 2 and arr[right] not in used_fruit:
+		if used_fruit[0] != arr[last_index]:
+			used_fruit.pop(0)
+		elif used_fruit[1] != arr[last_index]:
+			used_fruit.pop(1)
+		left = last_index
+	if right >= 1 and arr[right] != arr[right - 1]:
+		last_index = right
 	result = max(result, right - left)
+	print(left, right)
+	right += 1
 print(result)
