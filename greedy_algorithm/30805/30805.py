@@ -3,7 +3,6 @@ input = lambda: sys.stdin.readline().strip()
 
 n = int(input())
 a = list(map(int, input().split()))
-
 m = int(input())
 b = list(map(int, input().split()))
 
@@ -18,7 +17,7 @@ while a and b:
         b = b[b.index(b_max) + 1:]
     elif a_max > b_max:
         a.pop(a.index(a_max))
-    else:
+    else: # a_max < b_max
         b.pop(b.index(b_max))
 
 print(len(result))
