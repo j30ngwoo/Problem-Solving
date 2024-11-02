@@ -20,8 +20,8 @@ def f():
         h1, a1 = arr[i][H], arr[i][A]
         h2, a2 = arr[i + 1][H], arr[i + 1][A]
 
-        # h1 + a1 * x > h2 + a2 * x
-        # (a1 - a2)x > h2 - h1
+        # h1 + a1 * day > h2 + a2 * day
+        # (a1 - a2) * day > h2 - h1
         if a1 - a2 > 0:
             min_ = max(min_, floor((h2 - h1) / (a1 - a2)) + 1)
         elif a1 - a2 < 0:
