@@ -34,7 +34,6 @@ def main():
                 break
             else:
                 cleaner = [next_y, next_x]
-                continue
         else:
             forward = (forward - 1) % 4
             next_x = now_x + DELTAS[forward][X]
