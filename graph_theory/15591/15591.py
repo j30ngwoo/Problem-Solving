@@ -1,6 +1,6 @@
 import sys
 input = lambda: sys.stdin.readline().strip()
-sys.setrecursionlimit(10000)
+sys.setrecursionlimit(100000)
 
 def main():
 	n, q = map(int, input().split())
