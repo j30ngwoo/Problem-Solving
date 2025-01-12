@@ -29,8 +29,7 @@ def main():
             
             if (y, x) in guest:
                 taxi_y, taxi_x = y, x
-                goal = guest[(y, x)]
-                guest.pop((y, x))
+                goal = guest.pop((y, x))
                 fuel -= dist
                 is_complete = True
                 break
