@@ -5,16 +5,18 @@ def main():
     N, K = map(int, input().split())
     s = input().split()
     
-    count = 0
-    for i in range(N):
-        if K < count + len(s[i]):
+    count = len(s[0])
+    print(s[0], end='')
+
+    for w in s[1:]:
+        if K < count + len(w):
             print()
             count = 0
-        elif 0 < i:
+        else:
             print(end=' ')
         
-        print(s[i], end='')
-        count += len(s[i])
+        print(w, end='')
+        count += len(w)
 
 if __name__ == "__main__":
     main()
